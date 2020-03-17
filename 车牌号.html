@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .licensePlate {
+            box-sizing: border-box;
+            padding: 0 10px;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            background: lightblue;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p class="licensePlate"></p>
+        <button class="shakeBtn">摇号</button>
+    </div>
+    <script>
+        let licensePlate = document.querySelector('.licensePlate'),
+            shakeBtn = document.querySelector('.shakeBtn');
+        let conton = 0;
+        shakeBtn.onclick = function () {
+            // 只能摇三次
+            conton++;
+            if (conton > 3) {
+                alert('你只有三次的摇号机会，你已经摇完三次');
+                return; //在函数中只写return有终止的意思
+            }
+            // 随机摇号
+            let result = '京',
+                arr1 = 'ABCEFGHJK', // => 索引范围0~8
+                arr2 = 'QWERTYUIOPASDFGHJKLZXCVBNM', // => 索引范围0~25
+                arr3 = '0123456789'; // => 索引范围0~9
+            result += arr1.charAt(Math.round(Math.random() * (8 - 0) + 0));
+            for (let i = 0; i < 2; i++) {
+                result += arr2.charAt(Math.round(Math.random() * (25 - 0) +
+                    0)); // => 基于数学函数round和random获取随机索引，再通过charAt获取该索引对应的字符
+            }
+            for (let j = 0; j < 3; j++) {
+                result += arr3.charAt(Math.round(Math.random() * (9 - 0) + 0));
+            }
+            licensePlate.innerHTML = result;
+        }
+    </script>
+</body>
+
+</html>
