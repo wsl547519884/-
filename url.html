@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function queryURLParams(url) {
+            let askIndex = url.indexOf('?'),
+                polIndex = url.lastIndexOf('#'),
+                askText = '',
+                polText = '';
+            polIndex === -1 ? polIndex = url.length : null;
+            polText = url.slice(polIndex + 1);
+            askIndex > -1 ? askText = url.slice(askIndex + 1, polIndex) : null;
+            // 先创建一个对象，把得到的值都存到对象中
+            let obj = {};
+            // 处理哈希值
+            polText ? obj['HASH'] = polText : null; //polText 判断字符串是否为空
+            // 处理问好后的值
+            if (askText) {
+                let arr = askText.split('&');
+                arr.map(item => {
+                    item = item.split('=');
+                    obj[item[0]] = item[1];
+                })
+            }
+            return obj;
+        }
+        console.log(queryURLParams('http://www.zhufengpeixun.cn/?lx=1&name=JS&from=baidu#video'));
+    </script>
+</body>
+
+</html>

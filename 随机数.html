@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sum() {
+            let total = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                let item = Number(arguments[i]);
+                if (!isNaN(item)) total += item;
+            }
+            return total;
+        }
+        console.log(sum(11,15,14,'30','aa'));
+    </script>
+</body>
+</html>
